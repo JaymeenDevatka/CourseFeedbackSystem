@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Feedback Sentiment Report</h2>
+<canvas id="sentimentChart" width="400" height="200"></canvas>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const ctx = document.getElementById('sentimentChart');
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Positive', 'Negative', 'Neutral'],
+            datasets: [{
+                label: '# of Feedbacks',
+                data: [{{ sentiments.Positive }}, {{ sentiments.Negative }}, {{ sentiments.Neutral }}],
+                backgroundColor: ['#28a745', '#dc3545', '#ffc107']
+            }]
+        }
+    });
+</script>
+{% endblock %}
